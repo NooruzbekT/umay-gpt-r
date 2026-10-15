@@ -35,6 +35,8 @@ def test_budget_and_lang():
     assert parse_budget("наушники до 25к") == 25000
     assert parse_budget("күрте 15000 теңгеге дейін") == 15000
     assert detect_lang("маған жылы күрте керек") == "kk"
+    assert detect_lang("балалар болмосине 30000 тенгеге дейин жиынтык") == "kk"  # казахский на русской раскладке
+    assert detect_lang("балаклава и керамическая кружка") == "ru"
     assert detect_lang("warm jacket") == "en"
 
 
