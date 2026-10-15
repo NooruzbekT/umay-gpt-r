@@ -42,8 +42,7 @@ export function Composer({
     setText("");
   };
 
-  // Голос: Web Speech API прямо в браузере (без отправки аудио на сервер в прототипе).
-  // Прод: Whisper/ASR-сервис для казахского — браузерное распознавание kk-KZ работает не везде.
+  // Голос: Web Speech API в браузере; распознавание kk-KZ поддерживается не во всех браузерах.
   const toggleVoice = () => {
     const SR = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
     if (!SR) return;

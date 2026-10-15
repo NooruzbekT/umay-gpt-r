@@ -42,7 +42,7 @@ export default function Chat() {
   const bottom = useRef<HTMLDivElement>(null);
   const abort = useRef<AbortController | null>(null);
 
-  // --- восстановление состояния гостя ---
+  // восстановление состояния гостя
   useEffect(() => {
     setLang(safeStorage<Lang>("umay.lang", "ru"));
     setChats(safeStorage<ChatMeta[]>("umay.chats", []));
@@ -177,7 +177,7 @@ export default function Chat() {
 
   return (
     <div className="flex h-dvh bg-paper font-sans text-teal-deep">
-      {/* ---------- боковая панель ---------- */}
+      {/* боковая панель */}
       <nav
         aria-label={t(lang, "chats")}
         className={`fixed inset-y-0 left-0 z-20 flex w-72 flex-col border-r border-teal-deep/10 bg-white transition-transform motion-reduce:transition-none md:static md:translate-x-0 ${
@@ -217,7 +217,7 @@ export default function Chat() {
       </nav>
       {navOpen && <div className="fixed inset-0 z-10 bg-teal-deep/20 md:hidden" onClick={() => setNavOpen(false)} aria-hidden />}
 
-      {/* ---------- основная колонка ---------- */}
+      {/* основная колонка */}
       <main className="flex min-w-0 flex-1 flex-col">
         <header className="flex items-center gap-2 px-4 py-3 md:px-6">
           <button onClick={() => setNavOpen(true)} className="grid size-10 place-items-center rounded-full hover:bg-white md:hidden" aria-label={t(lang, "chats")}>

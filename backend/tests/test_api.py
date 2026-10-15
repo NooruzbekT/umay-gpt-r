@@ -61,6 +61,16 @@ def test_bundle_within_budget():
     assert b["total"] <= 100000 and len(b["products"]) >= 3
 
 
+def test_bundle_by_items_one_per_item():
+    """LLM передаёт набор позициями через запятую — по товару на позицию, без дублей, в бюджете."""
+    from app.catalog import catalog
+
+    items = catalog.bundle("куртка, шапка, шарф", 60000)
+    assert 2 <= len(items) <= 3
+    assert len({p.id for p in items}) == len(items)
+    assert sum(p.price for p in items) <= 60000
+
+
 def test_followups_compare_and_cart():
     sid, _ = chat("беспроводные наушники")
     _, ev = chat("сравни первые два", sid)

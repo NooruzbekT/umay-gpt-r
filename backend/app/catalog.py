@@ -1,17 +1,13 @@
-"""Каталог и поиск.
-
-Прототип: in-memory гибридный поиск (BM25-подобный скоринг по токенам + стемминг-лайт
-+ словарь синонимов ru/kk/en) с фильтрами по цене, категории, сезону и наличию.
-
-Прод: тот же интерфейс `search()` реализуется поверх OpenSearch/Meilisearch (BM25)
-+ pgvector/Qdrant (эмбеддинги мультиязычной модели) с RRF-слиянием результатов.
-"""
+"""Каталог и поиск: BM25-подобный скоринг с лёгким стеммингом и синонимами ru/kk/en,
+фильтры по цене, категории и наличию."""
 from __future__ import annotations
 
 import json
 import math
 import os
 import re
+import threading
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
@@ -52,7 +48,7 @@ def norm(text: str) -> str:
 
 
 def stem(tok: str) -> str:
-    """Очень лёгкий стеммер: обрезает типовые окончания ru (достаточно для демо)."""
+    """Лёгкий стеммер: обрезает типовые русские окончания."""
     tok = norm(tok)
     for suf in ("ями", "ами", "ого", "ему", "ыми", "ими", "ая", "ое", "ые", "ий", "ый", "ой", "ую", "ов", "ей", "ах", "ях", "ам", "ям", "ом", "ем", "а", "я", "ы", "и", "у", "ю", "е", "о"):
         if len(tok) > len(suf) + 3 and tok.endswith(suf):
@@ -181,7 +177,7 @@ class Catalog:
                 continue
             s = self._score(q, p.id) if q else 0.1
             if s > 0:
-                # лёгкий буст за рейтинг и скидку — как бизнес-ранжирование
+                # буст за рейтинг и скидку
                 s *= 1 + (p.raw["rating"] - 4) * 0.2 + (0.1 if p.raw["old_price"] else 0)
                 scored.append((s, p))
         scored.sort(key=lambda x: -x[0])
@@ -189,6 +185,9 @@ class Catalog:
 
     def bundle(self, query: str, budget: int, category: str | None = None) -> list[Product]:
         """Подборка «под ключ» в рамках бюджета (жадно по релевантности, без дублей типов)."""
+        parts = [p.strip() for p in re.split(r"(?<!\d),|,(?!\d)", query) if p.strip()]  # «30,000» не делим
+        if len(parts) > 1:
+            return self._bundle_parts(parts[:8], budget, category)
         candidates = self.search(query, max_price=budget, category=category, limit=30)
         chosen: list[Product] = []
         total = 0
@@ -201,6 +200,24 @@ class Catalog:
                 chosen.append(p)
                 total += p.price
                 seen_kind.add(kind)
+        return chosen
+
+    def _bundle_parts(self, parts: list[str], budget: int, category: str | None) -> list[Product]:
+        """Набор из конкретных позиций («плед, свеча, кружка»): по одному товару на позицию.
+        Позиции ищутся параллельно (в live-режиме это отдельные запросы к API Umay);
+        потолок на позицию не даёт первой позиции съесть весь бюджет."""
+        cap = min(budget, int(budget / len(parts) * 1.5))
+        with ThreadPoolExecutor(max_workers=len(parts)) as ex:
+            found = list(ex.map(lambda q: self.search(q, max_price=cap, category=category, limit=5)
+                                or self.search(q, max_price=cap, limit=5), parts))
+        chosen: list[Product] = []
+        total = 0
+        for cands in found:
+            for p in cands:
+                if p.id not in {c.id for c in chosen} and total + p.price <= budget:
+                    chosen.append(p)
+                    total += p.price
+                    break
         return chosen
 
 
@@ -266,6 +283,7 @@ class LiveCatalog(Catalog):
 
     name = "live"
     API = "https://endpoint.umayshop.kz/product/public/web/product/search/v2"
+    _lock = threading.Lock()
 
     def search(self, query: str, max_price: int | None = None, min_price: int | None = None,
                category: str | None = None, limit: int = 6, in_stock_only: bool = True) -> list[Product]:
@@ -280,13 +298,17 @@ class LiveCatalog(Catalog):
         try:
             r = httpx.post(self.API, json=body, timeout=8)
             items = (r.json().get("data") or {}).get("list") or []
+        except Exception:
+            items = None
+        # запрос к API идёт параллельно, а индекс общий: пополнение и ранжирование — под блокировкой
+        with self._lock:
+            if items is None:
+                return super().search(query, max_price, min_price, category, limit, in_stock_only)
             fresh = self.add([umay_raw(p, cat=category or guess_cat_from_text(p.get("category", "")), kind=p.get("category"))
                               for p in items if not p.get("adult")])
             ids = {p.id for p in fresh}
             ranked = [p for p in super().search(query, max_price, min_price, None, limit * 3, in_stock_only) if p.id in ids]
             return (ranked or fresh)[:limit]
-        except Exception:
-            return super().search(query, max_price, min_price, category, limit, in_stock_only)
 
 
 def guess_cat_from_text(text: str) -> str:

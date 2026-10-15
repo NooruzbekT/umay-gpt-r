@@ -1,15 +1,4 @@
-"""Umay GPT Next — API.
-
-Эндпоинты:
-  GET    /api/health                  статус + активный агент
-  POST   /api/chat                    SSE-стрим ответа агента
-  GET    /api/sessions/{sid}          история и корзина сессии
-  GET    /api/cart?session_id=        корзина
-  POST   /api/cart                    добавить товар (кнопка в карточке)
-  DELETE /api/cart/{pid}?session_id=  убрать товар
-  GET    /api/products/{pid}          карточка товара
-  POST   /api/search/image            поиск по фото (демо: по цвету; прод: CLIP-эмбеддинги)
-"""
+"""Umay GPT Next — API (список эндпоинтов в README)."""
 from __future__ import annotations
 
 import io
@@ -54,7 +43,7 @@ app.add_middleware(
 agent = make_agent()
 fallback = RuleAgent()
 
-# ---- простейший rate-limit (прод: Redis + sliding window на API Gateway) ----
+# простейший rate-limit в памяти процесса
 _hits: dict[str, list[float]] = defaultdict(list)
 RATE = int(os.getenv("RATE_LIMIT_PER_MIN", "30"))
 
@@ -116,7 +105,8 @@ async def chat(body: ChatIn, request: Request):
         yield sse({"type": "done"})
 
     return StreamingResponse(gen(), media_type="text/event-stream",
-                             headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
+                             # no-transform: прокси Next.js (и другие) не сжимают и не буферизуют SSE
+                             headers={"Cache-Control": "no-cache, no-transform", "X-Accel-Buffering": "no"})
 
 
 @app.get("/api/sessions/{sid}")
@@ -174,8 +164,7 @@ COLOR_MAP = {
 
 @app.post("/api/search/image")
 async def search_image(file: UploadFile = File(...), session_id: str | None = None):
-    """Демо поиска по фото: берём доминирующий цвет и ищем товары этого цвета.
-    Прод: CLIP/SigLIP-эмбеддинг изображения → ANN-поиск в векторном индексе каталога."""
+    """Демо поиска по фото: берём доминирующий цвет и ищем товары этого цвета."""
     from PIL import Image
 
     data = await file.read()

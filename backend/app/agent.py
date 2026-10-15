@@ -1,19 +1,6 @@
-"""Агент Umay GPT.
-
-Два провайдера с одинаковым контрактом (async-генератор событий):
-  • LLMAgent   — настоящая LLM с tool use (Anthropic Claude; провайдер легко заменить);
-  • RuleAgent  — детерминированный планировщик без LLM: парсит намерение, бюджет и
-                 ссылки «первый/второй», вызывает те же инструменты. Нужен для офлайн-демо,
-                 тестов и как фолбэк при недоступности LLM (graceful degradation).
-
-События (уходят на фронт через SSE):
-  {"type":"session","session_id":...}
-  {"type":"status","text":"Ищу товары…"}
-  {"type":"text","delta":"..."}
-  {"type":"artifact","artifact":{kind: PRODUCT_LIST|BUNDLE|COMPARISON|CART, ...}}
-  {"type":"suggestions","items":[...]}
-  {"type":"done"}
-"""
+"""Агенты Umay GPT: OpenAICompatAgent (Qwen/OpenAI), LLMAgent (Claude) и RuleAgent —
+планировщик без LLM для офлайн-режима, тестов и фолбэка. У всех один контракт:
+async-генератор событий status / text / artifact / suggestions."""
 from __future__ import annotations
 
 import asyncio
@@ -28,8 +15,6 @@ from .store import Session
 from .tools import TOOL_SCHEMAS, run_tool
 
 Event = dict
-
-# ---------- общие утилиты ----------
 
 KK_CHARS = set("әғқңөұүһі")
 
@@ -104,8 +89,6 @@ async def stream_text(text: str) -> AsyncIterator[Event]:
         await asyncio.sleep(0.018)
 
 
-# ---------- RuleAgent ----------
-
 class RuleAgent:
     name = "rule-based (demo)"
 
@@ -123,7 +106,7 @@ class RuleAgent:
         if re.search(r"добав|в корзин|положи|возьму|add|себетке|қос", t) and (refs or s.last_results):
             pid = (refs or s.last_results[:1])[0]
             yield {"type": "status", "text": T["cart"][lang]}
-            res, art = run_tool("add_to_cart", {"product_id": pid}, s)
+            res, art = await asyncio.to_thread(run_tool, "add_to_cart", {"product_id": pid}, s)
             if art:
                 yield {"type": "artifact", "artifact": art}
             text = say(
@@ -138,7 +121,7 @@ class RuleAgent:
 
         # 2. корзина: показать
         if re.search(r"корзин|cart|себет", t):
-            res, art = run_tool("get_cart", {}, s)
+            res, art = await asyncio.to_thread(run_tool, "get_cart", {}, s)
             if art:
                 yield {"type": "artifact", "artifact": art}
             text = (say("Корзина пока пуста — давайте что-нибудь подберём?", "Себет әзірге бос — бірдеңе таңдайық па?", "Your cart is empty — shall we find something?")
@@ -158,7 +141,7 @@ class RuleAgent:
                     yield e
                 return
             yield {"type": "status", "text": T["comparing"][lang]}
-            res, art = run_tool("compare_products", {"product_ids": ids[:4]}, s)
+            res, art = await asyncio.to_thread(run_tool, "compare_products", {"product_ids": ids[:4]}, s)
             yield {"type": "artifact", "artifact": art}
             ps = res["products"]
             cheaper = min(ps, key=lambda p: p["price"])
@@ -193,7 +176,7 @@ class RuleAgent:
         # 5. подборка под бюджет
         if budget and re.search(r"комнат|набор|образ|обустро|под ключ|room|outfit|bundle|бөлме|жиынтық|всё для|все для", t):
             yield {"type": "status", "text": T["bundling"][lang]}
-            res, art = run_tool("build_bundle", {"query": message, "budget": budget, "category": catalog.guess_category(re.findall(r"\w+", t))}, s)
+            res, art = await asyncio.to_thread(run_tool, "build_bundle", {"query": message, "budget": budget, "category": catalog.guess_category(re.findall(r"\w+", t))}, s)
             yield {"type": "artifact", "artifact": art}
             text = say(
                 f"Собрал набор из {len(res['products'])} {plural_ru(len(res['products']), 'товара', 'товаров', 'товаров')} на {fmt(res['total'])} при бюджете {fmt(budget)} — остаётся {fmt(budget - res['total'])}. Любую позицию можно заменить или сразу добавить в корзину.",
@@ -217,7 +200,7 @@ class RuleAgent:
         # 7. поиск
         yield {"type": "status", "text": T["searching"][lang]}
         cat = catalog.guess_category([w for w in re.findall(r"\w+", t)])
-        res, art = run_tool("search_products", {"query": message, "max_price": budget, "category": cat}, s)
+        res, art = await asyncio.to_thread(run_tool, "search_products", {"query": message, "max_price": budget, "category": cat}, s)
         if not res["count"]:
             async for e in stream_text(say(
                 "Не нашёл подходящего. Попробуйте уточнить запрос или поднять бюджет.",
@@ -238,15 +221,15 @@ class RuleAgent:
         yield {"type": "suggestions", "items": SUGGEST[lang]}
 
 
-# ---------- LLMAgent ----------
-
 SYSTEM_PROMPT = """Ты — Umay GPT, ИИ-консультант маркетплейса Umay (Казахстан): товары UmayHome, UMI, UMI FOOD и 5 млн+ товаров с 1688/Taobao, рассрочка 0-0-24, доставка по Казахстану.
 Правила:
 - Отвечай на языке пользователя (русский, казахский или английский), коротко и по делу, 1–3 предложения.
 - Для любого подбора товаров ВСЕГДА вызывай инструменты, не выдумывай товары и цены.
 - Цены в тенге (₸). Если назван бюджет — передай его в max_price/budget.
 - Карточки товаров пользователь видит сам — не перечисляй их списком, дай вывод и следующий шаг.
+- Для набора (комната, подарок, образ) в build_bundle перечисли 3–6 конкретных видов товаров через запятую, а не общие слова: «уютное для дома маме» → «плед, ароматическая свеча, подушка, кружка».
 - «Первый/второй» = позиции из последней выдачи (см. ниже).
+- По-казахски пиши «тауар», а не «товар»; ответ целиком на языке пользователя, без русских вставок.
 - Не обсуждай темы вне шопинга дольше одной фразы; вежливо верни к покупкам."""
 
 
@@ -278,7 +261,7 @@ class LLMAgent:
         msgs.append({"role": "user", "content": message})
         user_budget = parse_budget(message)
 
-        for _ in range(5):  # максимум 5 шагов tool-loop
+        for _ in range(5):
             async with self.client.messages.stream(model=self.model, max_tokens=800, system=SYSTEM_PROMPT + ctx,
                                                    tools=TOOL_SCHEMAS, messages=msgs) as stream:
                 async for ev in stream:
@@ -293,7 +276,7 @@ class LLMAgent:
                 if b.type == "tool_use":
                     yield {"type": "status", "text": T.get({"search_products": "searching", "build_bundle": "bundling", "compare_products": "comparing"}.get(b.name, "cart"))[s.lang]}
                     args = enforce_budget(b.name, dict(b.input), user_budget)
-                    res, art = run_tool(b.name, args, s)
+                    res, art = await asyncio.to_thread(run_tool, b.name, args, s)
                     if art:
                         yield {"type": "artifact", "artifact": art}
                     results.append({"type": "tool_result", "tool_use_id": b.id, "content": json.dumps(res, ensure_ascii=False)})
@@ -302,9 +285,7 @@ class LLMAgent:
 
 
 class OpenAICompatAgent:
-    """LLM-агент для любого OpenAI-совместимого API с function calling:
-    Qwen (DashScope compatible-mode), OpenAI, локальные vLLM/Ollama.
-    Тот же контракт событий и те же инструменты, что у LLMAgent."""
+    """Любой OpenAI-совместимый API с function calling: Qwen (DashScope), OpenAI, vLLM/Ollama."""
 
     PRESETS = {
         "qwen": ("https://dashscope-intl.aliyuncs.com/compatible-mode/v1", "qwen-plus", ("QWEN_API_KEY", "DASHSCOPE_API_KEY")),
@@ -383,7 +364,7 @@ class OpenAICompatAgent:
                     args = {}
                 yield {"type": "status", "text": T[{"search_products": "searching", "build_bundle": "bundling", "compare_products": "comparing"}.get(c["name"], "cart")][s.lang]}
                 args = enforce_budget(c["name"], args, user_budget)
-                res, art = run_tool(c["name"], args, s)
+                res, art = await asyncio.to_thread(run_tool, c["name"], args, s)
                 if art:
                     yield {"type": "artifact", "artifact": art}
                 msgs.append({"role": "tool", "tool_call_id": c["id"], "content": json.dumps(res, ensure_ascii=False)})
@@ -406,6 +387,6 @@ def make_agent():
             return RuleAgent()
     try:
         return LLMAgent() if provider == "anthropic" else OpenAICompatAgent(provider)
-    except Exception as e:  # нет ключа / SDK — работаем на демо-агенте
+    except Exception as e:
         logging.getLogger("umay").warning("LLM agent unavailable (%s), using rule agent", e)
         return RuleAgent()

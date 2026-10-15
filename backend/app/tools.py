@@ -1,10 +1,5 @@
-"""Инструменты агента (tool use).
-
-Каждый инструмент: JSON-схема для LLM + python-реализация.
-Результат инструмента = данные для модели + «артефакт» для фронта (карточки товаров,
-таблица сравнения, превью корзины). Это повторяет удачную идею текущего Umay GPT
-(artifact_updated / PRODUCTS_COMPARISON / CART_PREVIEW), но в явном контракте.
-"""
+"""Инструменты агента: JSON-схема для LLM + реализация. Результат — данные для модели
+и артефакт для фронта (карточки, сравнение, корзина)."""
 from __future__ import annotations
 
 from typing import Any
@@ -34,7 +29,7 @@ TOOL_SCHEMAS: list[dict[str, Any]] = [
         "input_schema": {
             "type": "object",
             "properties": {
-                "query": {"type": "string"},
+                "query": {"type": "string", "description": "3–6 конкретных видов товаров на русском через запятую, напр. 'плед, свеча, подушка, кружка'"},
                 "budget": {"type": "integer", "description": "общий бюджет в тенге"},
                 "category": {"type": "string", "enum": ["clothes", "home", "kids", "electronics", "beauty", "food"]},
             },
