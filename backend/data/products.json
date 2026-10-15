@@ -1,0 +1,1203 @@
+[
+ {
+  "id": "p001",
+  "category": "clothes",
+  "emoji": "🧥",
+  "name": {
+   "ru": "Пуховик женский удлинённый",
+   "kk": "Әйелдер ұзартылған пуховигі",
+   "en": "Women's long down jacket"
+  },
+  "price": 34990,
+  "old_price": null,
+  "rating": 4.2,
+  "reviews": 1138,
+  "colors": [
+   "чёрный",
+   "бежевый"
+  ],
+  "tags": "куртка пуховик зима тёплая женская верхняя одежда",
+  "season": "winter",
+  "installment_24": 1458,
+  "delivery_days": 3,
+  "source": "UMI",
+  "stock": 17
+ },
+ {
+  "id": "p002",
+  "category": "clothes",
+  "emoji": "🧥",
+  "name": {
+   "ru": "Куртка демисезонная мужская",
+   "kk": "Ерлер маусымдық күртесі",
+   "en": "Men's mid-season jacket"
+  },
+  "price": 18990,
+  "old_price": null,
+  "rating": 4.7,
+  "reviews": 2245,
+  "colors": [
+   "хаки",
+   "чёрный"
+  ],
+  "tags": "куртка осень весна тёплая мужская ветровка верхняя одежда",
+  "season": "autumn",
+  "installment_24": 791,
+  "delivery_days": 2,
+  "source": "Taobao",
+  "stock": 4
+ },
+ {
+  "id": "p003",
+  "category": "clothes",
+  "emoji": "🧥",
+  "name": {
+   "ru": "Тренч классический",
+   "kk": "Классикалық тренч",
+   "en": "Classic trench coat"
+  },
+  "price": 22990,
+  "old_price": null,
+  "rating": 4.3,
+  "reviews": 964,
+  "colors": [
+   "бежевый"
+  ],
+  "tags": "тренч плащ осень женская верхняя одежда",
+  "season": "autumn",
+  "installment_24": 958,
+  "delivery_days": 10,
+  "source": "UmayHome",
+  "stock": 71
+ },
+ {
+  "id": "p004",
+  "category": "clothes",
+  "emoji": "🧥",
+  "name": {
+   "ru": "Куртка утеплённая оверсайз",
+   "kk": "Жылытылған оверсайз күрте",
+   "en": "Oversized padded jacket"
+  },
+  "price": 16490,
+  "old_price": null,
+  "rating": 4.7,
+  "reviews": 2244,
+  "colors": [
+   "серый",
+   "зелёный"
+  ],
+  "tags": "куртка осень тёплая оверсайз унисекс молодёжная верхняя одежда",
+  "season": "autumn",
+  "installment_24": 687,
+  "delivery_days": 7,
+  "source": "UMI",
+  "stock": 57
+ },
+ {
+  "id": "p005",
+  "category": "clothes",
+  "emoji": "🧥",
+  "name": {
+   "ru": "Куртка-рубашка утеплённая",
+   "kk": "Жылытылған күрте-жейде",
+   "en": "Padded shirt jacket"
+  },
+  "price": 12990,
+  "old_price": 20780,
+  "rating": 4.4,
+  "reviews": 38,
+  "colors": [
+   "бежевый",
+   "коричневый"
+  ],
+  "tags": "куртка рубашка осень тёплая унисекс верхняя одежда",
+  "season": "autumn",
+  "installment_24": 541,
+  "delivery_days": 3,
+  "source": "Taobao",
+  "stock": 43
+ },
+ {
+  "id": "p006",
+  "category": "clothes",
+  "emoji": "🧥",
+  "name": {
+   "ru": "Ветровка с капюшоном",
+   "kk": "Капюшонды желдеуік",
+   "en": "Hooded windbreaker"
+  },
+  "price": 9490,
+  "old_price": 11860,
+  "rating": 4.3,
+  "reviews": 1390,
+  "colors": [
+   "синий",
+   "чёрный"
+  ],
+  "tags": "куртка ветровка осень весна лёгкая верхняя одежда",
+  "season": "autumn",
+  "installment_24": 395,
+  "delivery_days": 2,
+  "source": "UmayHome",
+  "stock": 48
+ },
+ {
+  "id": "p007",
+  "category": "clothes",
+  "emoji": "🧶",
+  "name": {
+   "ru": "Свитер вязаный с горлом",
+   "kk": "Тоқылған жемпір",
+   "en": "Knitted turtleneck sweater"
+  },
+  "price": 8990,
+  "old_price": null,
+  "rating": 4.5,
+  "reviews": 1420,
+  "colors": [
+   "молочный",
+   "коричневый"
+  ],
+  "tags": "свитер кофта осень тёплая вязаный",
+  "season": "autumn",
+  "installment_24": 375,
+  "delivery_days": 10,
+  "source": "1688",
+  "stock": 103
+ },
+ {
+  "id": "p008",
+  "category": "clothes",
+  "emoji": "👕",
+  "name": {
+   "ru": "Худи базовое хлопок",
+   "kk": "Мақта худи",
+   "en": "Basic cotton hoodie"
+  },
+  "price": 7490,
+  "old_price": null,
+  "rating": 4.7,
+  "reviews": 2208,
+  "colors": [
+   "чёрный",
+   "серый",
+   "розовый"
+  ],
+  "tags": "худи толстовка кофта осень молодёжная",
+  "season": "all",
+  "installment_24": 312,
+  "delivery_days": 2,
+  "source": "Taobao",
+  "stock": 10
+ },
+ {
+  "id": "p009",
+  "category": "clothes",
+  "emoji": "👖",
+  "name": {
+   "ru": "Джинсы прямые",
+   "kk": "Тік джинсы",
+   "en": "Straight jeans"
+  },
+  "price": 9990,
+  "old_price": 15980,
+  "rating": 4.4,
+  "reviews": 1493,
+  "colors": [
+   "синий",
+   "чёрный"
+  ],
+  "tags": "джинсы брюки штаны",
+  "season": "all",
+  "installment_24": 416,
+  "delivery_days": 10,
+  "source": "UMI",
+  "stock": 90
+ },
+ {
+  "id": "p010",
+  "category": "clothes",
+  "emoji": "👗",
+  "name": {
+   "ru": "Платье трикотажное миди",
+   "kk": "Трикотаж миди көйлек",
+   "en": "Knit midi dress"
+  },
+  "price": 11990,
+  "old_price": null,
+  "rating": 4.2,
+  "reviews": 945,
+  "colors": [
+   "чёрный",
+   "бордовый"
+  ],
+  "tags": "платье женское осень",
+  "season": "autumn",
+  "installment_24": 500,
+  "delivery_days": 5,
+  "source": "UmayHome",
+  "stock": 109
+ },
+ {
+  "id": "p011",
+  "category": "clothes",
+  "emoji": "🧣",
+  "name": {
+   "ru": "Шарф кашемировый",
+   "kk": "Кашемир шарф",
+   "en": "Cashmere scarf"
+  },
+  "price": 5990,
+  "old_price": null,
+  "rating": 4.8,
+  "reviews": 1568,
+  "colors": [
+   "серый",
+   "бежевый"
+  ],
+  "tags": "шарф аксессуар осень зима тёплый",
+  "season": "autumn",
+  "installment_24": 250,
+  "delivery_days": 5,
+  "source": "Taobao",
+  "stock": 81
+ },
+ {
+  "id": "p012",
+  "category": "clothes",
+  "emoji": "👟",
+  "name": {
+   "ru": "Кроссовки беговые",
+   "kk": "Жүгіруге арналған кроссовка",
+   "en": "Running sneakers"
+  },
+  "price": 14990,
+  "old_price": 18730,
+  "rating": 4.3,
+  "reviews": 1467,
+  "colors": [
+   "белый",
+   "чёрный"
+  ],
+  "tags": "кроссовки обувь спорт бег",
+  "season": "all",
+  "installment_24": 625,
+  "delivery_days": 3,
+  "source": "1688",
+  "stock": 89
+ },
+ {
+  "id": "p013",
+  "category": "clothes",
+  "emoji": "🥾",
+  "name": {
+   "ru": "Ботинки утеплённые",
+   "kk": "Жылы бәтеңке",
+   "en": "Insulated boots"
+  },
+  "price": 19990,
+  "old_price": null,
+  "rating": 4.7,
+  "reviews": 712,
+  "colors": [
+   "чёрный",
+   "коричневый"
+  ],
+  "tags": "ботинки обувь осень зима тёплые",
+  "season": "winter",
+  "installment_24": 833,
+  "delivery_days": 10,
+  "source": "UMI",
+  "stock": 20
+ },
+ {
+  "id": "p014",
+  "category": "clothes",
+  "emoji": "🧢",
+  "name": {
+   "ru": "Шапка бини",
+   "kk": "Бини бөрік",
+   "en": "Beanie hat"
+  },
+  "price": 2990,
+  "old_price": 4180,
+  "rating": 4.5,
+  "reviews": 2293,
+  "colors": [
+   "чёрный",
+   "бежевый"
+  ],
+  "tags": "шапка аксессуар осень тёплая",
+  "season": "autumn",
+  "installment_24": 125,
+  "delivery_days": 3,
+  "source": "1688",
+  "stock": 107
+ },
+ {
+  "id": "p015",
+  "category": "home",
+  "emoji": "🛏️",
+  "name": {
+   "ru": "Комплект постельного белья сатин",
+   "kk": "Сатин төсек жабдығы",
+   "en": "Satin bedding set"
+  },
+  "price": 12990,
+  "old_price": null,
+  "rating": 4.4,
+  "reviews": 143,
+  "colors": [
+   "белый",
+   "серый"
+  ],
+  "tags": "постельное бельё спальня дом текстиль",
+  "season": "all",
+  "installment_24": 541,
+  "delivery_days": 5,
+  "source": "Taobao",
+  "stock": 34
+ },
+ {
+  "id": "p016",
+  "category": "home",
+  "emoji": "🍳",
+  "name": {
+   "ru": "Набор сковородок 3 шт",
+   "kk": "Табалар жиынтығы 3 дана",
+   "en": "Frying pan set (3)"
+  },
+  "price": 15990,
+  "old_price": null,
+  "rating": 4.4,
+  "reviews": 2335,
+  "colors": [
+   "чёрный"
+  ],
+  "tags": "сковорода кухня посуда",
+  "season": "all",
+  "installment_24": 666,
+  "delivery_days": 5,
+  "source": "UMI",
+  "stock": 83
+ },
+ {
+  "id": "p017",
+  "category": "home",
+  "emoji": "🍽️",
+  "name": {
+   "ru": "Сервиз столовый на 6 персон",
+   "kk": "6 адамға арналған ас сервизі",
+   "en": "Dinnerware set for 6"
+  },
+  "price": 18990,
+  "old_price": 26580,
+  "rating": 4.5,
+  "reviews": 1891,
+  "colors": [
+   "белый"
+  ],
+  "tags": "посуда тарелки кухня сервиз",
+  "season": "all",
+  "installment_24": 791,
+  "delivery_days": 3,
+  "source": "1688",
+  "stock": 17
+ },
+ {
+  "id": "p018",
+  "category": "home",
+  "emoji": "💡",
+  "name": {
+   "ru": "Настольная лампа LED",
+   "kk": "LED үстел шамы",
+   "en": "LED desk lamp"
+  },
+  "price": 6990,
+  "old_price": null,
+  "rating": 4.8,
+  "reviews": 2219,
+  "colors": [
+   "белый",
+   "чёрный"
+  ],
+  "tags": "лампа свет освещение рабочий стол",
+  "season": "all",
+  "installment_24": 291,
+  "delivery_days": 5,
+  "source": "Taobao",
+  "stock": 114
+ },
+ {
+  "id": "p019",
+  "category": "home",
+  "emoji": "🪴",
+  "name": {
+   "ru": "Кашпо керамическое набор",
+   "kk": "Керамикалық кашпо жиынтығы",
+   "en": "Ceramic planter set"
+  },
+  "price": 4990,
+  "old_price": 7980,
+  "rating": 4.5,
+  "reviews": 910,
+  "colors": [
+   "белый"
+  ],
+  "tags": "декор растения дом уют",
+  "season": "all",
+  "installment_24": 208,
+  "delivery_days": 3,
+  "source": "Taobao",
+  "stock": 11
+ },
+ {
+  "id": "p020",
+  "category": "home",
+  "emoji": "🧺",
+  "name": {
+   "ru": "Корзина для белья плетёная",
+   "kk": "Кір себеті",
+   "en": "Woven laundry basket"
+  },
+  "price": 3990,
+  "old_price": null,
+  "rating": 4.8,
+  "reviews": 638,
+  "colors": [
+   "бежевый"
+  ],
+  "tags": "хранение ванная дом",
+  "season": "all",
+  "installment_24": 166,
+  "delivery_days": 3,
+  "source": "Taobao",
+  "stock": 76
+ },
+ {
+  "id": "p021",
+  "category": "home",
+  "emoji": "🛋️",
+  "name": {
+   "ru": "Плед флисовый 200x220",
+   "kk": "Флис жамылғы",
+   "en": "Fleece blanket"
+  },
+  "price": 5490,
+  "old_price": null,
+  "rating": 4.5,
+  "reviews": 1929,
+  "colors": [
+   "серый",
+   "бежевый"
+  ],
+  "tags": "плед текстиль уют тёплый гостиная",
+  "season": "autumn",
+  "installment_24": 229,
+  "delivery_days": 10,
+  "source": "1688",
+  "stock": 70
+ },
+ {
+  "id": "p022",
+  "category": "home",
+  "emoji": "🕯️",
+  "name": {
+   "ru": "Аромасвечи набор",
+   "kk": "Хош иісті шамдар",
+   "en": "Scented candles set"
+  },
+  "price": 3490,
+  "old_price": null,
+  "rating": 4.7,
+  "reviews": 481,
+  "colors": [
+   "белый"
+  ],
+  "tags": "декор уют подарок свечи",
+  "season": "all",
+  "installment_24": 145,
+  "delivery_days": 10,
+  "source": "1688",
+  "stock": 98
+ },
+ {
+  "id": "p023",
+  "category": "home",
+  "emoji": "🧹",
+  "name": {
+   "ru": "Робот-пылесос",
+   "kk": "Робот-шаңсорғыш",
+   "en": "Robot vacuum cleaner"
+  },
+  "price": 69990,
+  "old_price": 87480,
+  "rating": 4.3,
+  "reviews": 1792,
+  "colors": [
+   "белый"
+  ],
+  "tags": "уборка техника дом пылесос",
+  "season": "all",
+  "installment_24": 2916,
+  "delivery_days": 3,
+  "source": "Taobao",
+  "stock": 0
+ },
+ {
+  "id": "p024",
+  "category": "home",
+  "emoji": "☕",
+  "name": {
+   "ru": "Кофемашина капельная",
+   "kk": "Тамшылы кофе машинасы",
+   "en": "Drip coffee maker"
+  },
+  "price": 24990,
+  "old_price": 31230,
+  "rating": 4.9,
+  "reviews": 743,
+  "colors": [
+   "чёрный"
+  ],
+  "tags": "кофе кухня техника",
+  "season": "all",
+  "installment_24": 1041,
+  "delivery_days": 10,
+  "source": "UmayHome",
+  "stock": 111
+ },
+ {
+  "id": "p025",
+  "category": "home",
+  "emoji": "🪞",
+  "name": {
+   "ru": "Зеркало напольное в раме",
+   "kk": "Еденге қойылатын айна",
+   "en": "Floor mirror"
+  },
+  "price": 21990,
+  "old_price": 27480,
+  "rating": 4.8,
+  "reviews": 2091,
+  "colors": [
+   "золотой",
+   "чёрный"
+  ],
+  "tags": "зеркало спальня декор мебель",
+  "season": "all",
+  "installment_24": 916,
+  "delivery_days": 10,
+  "source": "UMI",
+  "stock": 19
+ },
+ {
+  "id": "p026",
+  "category": "home",
+  "emoji": "🗄️",
+  "name": {
+   "ru": "Стеллаж 5 полок",
+   "kk": "5 сөрелі стеллаж",
+   "en": "5-tier shelf"
+  },
+  "price": 17990,
+  "old_price": 22480,
+  "rating": 4.8,
+  "reviews": 2221,
+  "colors": [
+   "белый",
+   "дуб"
+  ],
+  "tags": "мебель хранение стеллаж полки",
+  "season": "all",
+  "installment_24": 750,
+  "delivery_days": 10,
+  "source": "UmayHome",
+  "stock": 76
+ },
+ {
+  "id": "p027",
+  "category": "kids",
+  "emoji": "🛏️",
+  "name": {
+   "ru": "Кровать детская с бортиками",
+   "kk": "Балалар төсегі",
+   "en": "Kids bed with rails"
+  },
+  "price": 49990,
+  "old_price": 62480,
+  "rating": 4.6,
+  "reviews": 470,
+  "colors": [
+   "белый"
+  ],
+  "tags": "детская кровать мебель детская комната",
+  "season": "all",
+  "installment_24": 2083,
+  "delivery_days": 5,
+  "source": "1688",
+  "stock": 30
+ },
+ {
+  "id": "p028",
+  "category": "kids",
+  "emoji": "🗄️",
+  "name": {
+   "ru": "Комод детский 4 ящика",
+   "kk": "Балалар комоды",
+   "en": "Kids dresser 4 drawers"
+  },
+  "price": 27990,
+  "old_price": null,
+  "rating": 4.4,
+  "reviews": 2335,
+  "colors": [
+   "белый",
+   "мятный"
+  ],
+  "tags": "детская мебель хранение детская комната комод",
+  "season": "all",
+  "installment_24": 1166,
+  "delivery_days": 2,
+  "source": "UmayHome",
+  "stock": 93
+ },
+ {
+  "id": "p029",
+  "category": "kids",
+  "emoji": "🧸",
+  "name": {
+   "ru": "Мягкая игрушка медведь 60 см",
+   "kk": "Жұмсақ ойыншық аю",
+   "en": "Plush bear 60 cm"
+  },
+  "price": 6990,
+  "old_price": 9780,
+  "rating": 4.8,
+  "reviews": 2193,
+  "colors": [
+   "коричневый"
+  ],
+  "tags": "игрушка детская подарок детская комната",
+  "season": "all",
+  "installment_24": 291,
+  "delivery_days": 3,
+  "source": "UMI",
+  "stock": 84
+ },
+ {
+  "id": "p030",
+  "category": "kids",
+  "emoji": "🧩",
+  "name": {
+   "ru": "Конструктор 500 деталей",
+   "kk": "500 бөлшекті конструктор",
+   "en": "Building blocks 500 pcs"
+  },
+  "price": 9990,
+  "old_price": 13980,
+  "rating": 4.9,
+  "reviews": 688,
+  "colors": [
+   "разноцветный"
+  ],
+  "tags": "игрушка конструктор развивающая детская",
+  "season": "all",
+  "installment_24": 416,
+  "delivery_days": 5,
+  "source": "Taobao",
+  "stock": 27
+ },
+ {
+  "id": "p031",
+  "category": "kids",
+  "emoji": "🎨",
+  "name": {
+   "ru": "Набор для рисования 150 предметов",
+   "kk": "Сурет салу жиынтығы",
+   "en": "Art set 150 pcs"
+  },
+  "price": 7990,
+  "old_price": 12780,
+  "rating": 4.8,
+  "reviews": 835,
+  "colors": [
+   "разноцветный"
+  ],
+  "tags": "творчество рисование детская подарок",
+  "season": "all",
+  "installment_24": 333,
+  "delivery_days": 5,
+  "source": "Taobao",
+  "stock": 85
+ },
+ {
+  "id": "p032",
+  "category": "kids",
+  "emoji": "💡",
+  "name": {
+   "ru": "Ночник проектор звёздное небо",
+   "kk": "Жұлдызды аспан түнгі шамы",
+   "en": "Starry sky night light"
+  },
+  "price": 4990,
+  "old_price": 6230,
+  "rating": 4.5,
+  "reviews": 2131,
+  "colors": [
+   "белый"
+  ],
+  "tags": "ночник свет детская комната",
+  "season": "all",
+  "installment_24": 208,
+  "delivery_days": 7,
+  "source": "UmayHome",
+  "stock": 31
+ },
+ {
+  "id": "p033",
+  "category": "kids",
+  "emoji": "🟫",
+  "name": {
+   "ru": "Ковёр детский игровой 150x200",
+   "kk": "Балалар кілемі",
+   "en": "Kids play rug"
+  },
+  "price": 12990,
+  "old_price": null,
+  "rating": 4.2,
+  "reviews": 98,
+  "colors": [
+   "разноцветный"
+  ],
+  "tags": "ковёр детская комната текстиль",
+  "season": "all",
+  "installment_24": 541,
+  "delivery_days": 10,
+  "source": "UMI",
+  "stock": 75
+ },
+ {
+  "id": "p034",
+  "category": "kids",
+  "emoji": "🪑",
+  "name": {
+   "ru": "Стол и стул детский набор",
+   "kk": "Балалар үстелі мен орындығы",
+   "en": "Kids table and chair set"
+  },
+  "price": 15990,
+  "old_price": null,
+  "rating": 4.2,
+  "reviews": 253,
+  "colors": [
+   "белый"
+  ],
+  "tags": "детская мебель стол стул детская комната",
+  "season": "all",
+  "installment_24": 666,
+  "delivery_days": 3,
+  "source": "UmayHome",
+  "stock": 115
+ },
+ {
+  "id": "p035",
+  "category": "kids",
+  "emoji": "🧥",
+  "name": {
+   "ru": "Комбинезон детский зимний",
+   "kk": "Балалар қысқы комбинезоны",
+   "en": "Kids winter snowsuit"
+  },
+  "price": 17990,
+  "old_price": null,
+  "rating": 4.8,
+  "reviews": 302,
+  "colors": [
+   "синий",
+   "розовый"
+  ],
+  "tags": "детская одежда зима тёплый комбинезон",
+  "season": "winter",
+  "installment_24": 750,
+  "delivery_days": 10,
+  "source": "UMI",
+  "stock": 35
+ },
+ {
+  "id": "p036",
+  "category": "kids",
+  "emoji": "🎒",
+  "name": {
+   "ru": "Рюкзак школьный ортопедический",
+   "kk": "Мектеп рюкзагы",
+   "en": "Orthopedic school backpack"
+  },
+  "price": 11990,
+  "old_price": 16780,
+  "rating": 4.4,
+  "reviews": 553,
+  "colors": [
+   "синий",
+   "розовый"
+  ],
+  "tags": "школа рюкзак детская",
+  "season": "all",
+  "installment_24": 500,
+  "delivery_days": 10,
+  "source": "Taobao",
+  "stock": 31
+ },
+ {
+  "id": "p037",
+  "category": "electronics",
+  "emoji": "🎧",
+  "name": {
+   "ru": "Наушники беспроводные с ANC",
+   "kk": "Сымсыз құлаққап ANC",
+   "en": "Wireless ANC headphones"
+  },
+  "price": 24990,
+  "old_price": 34980,
+  "rating": 4.8,
+  "reviews": 791,
+  "colors": [
+   "чёрный",
+   "белый"
+  ],
+  "tags": "наушники музыка гаджет электроника",
+  "season": "all",
+  "installment_24": 1041,
+  "delivery_days": 2,
+  "source": "UmayHome",
+  "stock": 84
+ },
+ {
+  "id": "p038",
+  "category": "electronics",
+  "emoji": "🎧",
+  "name": {
+   "ru": "TWS-наушники",
+   "kk": "TWS құлаққап",
+   "en": "TWS earbuds"
+  },
+  "price": 8990,
+  "old_price": 12580,
+  "rating": 4.5,
+  "reviews": 1695,
+  "colors": [
+   "белый"
+  ],
+  "tags": "наушники беспроводные гаджет электроника",
+  "season": "all",
+  "installment_24": 375,
+  "delivery_days": 7,
+  "source": "UmayHome",
+  "stock": 86
+ },
+ {
+  "id": "p039",
+  "category": "electronics",
+  "emoji": "🔋",
+  "name": {
+   "ru": "Power bank 20000 мА·ч",
+   "kk": "Power bank 20000 мА·сағ",
+   "en": "Power bank 20000 mAh"
+  },
+  "price": 7990,
+  "old_price": null,
+  "rating": 4.2,
+  "reviews": 1401,
+  "colors": [
+   "чёрный"
+  ],
+  "tags": "повербанк зарядка гаджет электроника",
+  "season": "all",
+  "installment_24": 333,
+  "delivery_days": 2,
+  "source": "UMI",
+  "stock": 24
+ },
+ {
+  "id": "p040",
+  "category": "electronics",
+  "emoji": "⌚",
+  "name": {
+   "ru": "Смарт-часы",
+   "kk": "Смарт-сағат",
+   "en": "Smart watch"
+  },
+  "price": 19990,
+  "old_price": null,
+  "rating": 4.6,
+  "reviews": 586,
+  "colors": [
+   "чёрный",
+   "розовый"
+  ],
+  "tags": "часы смарт гаджет фитнес электроника",
+  "season": "all",
+  "installment_24": 833,
+  "delivery_days": 7,
+  "source": "UMI",
+  "stock": 35
+ },
+ {
+  "id": "p041",
+  "category": "electronics",
+  "emoji": "🔊",
+  "name": {
+   "ru": "Портативная колонка",
+   "kk": "Портативті колонка",
+   "en": "Portable speaker"
+  },
+  "price": 12990,
+  "old_price": 18180,
+  "rating": 4.4,
+  "reviews": 320,
+  "colors": [
+   "чёрный",
+   "синий"
+  ],
+  "tags": "колонка музыка гаджет электроника",
+  "season": "all",
+  "installment_24": 541,
+  "delivery_days": 7,
+  "source": "UmayHome",
+  "stock": 6
+ },
+ {
+  "id": "p042",
+  "category": "electronics",
+  "emoji": "⌨️",
+  "name": {
+   "ru": "Клавиатура механическая",
+   "kk": "Механикалық пернетақта",
+   "en": "Mechanical keyboard"
+  },
+  "price": 16990,
+  "old_price": 27180,
+  "rating": 4.8,
+  "reviews": 394,
+  "colors": [
+   "чёрный"
+  ],
+  "tags": "клавиатура компьютер геймер электроника",
+  "season": "all",
+  "installment_24": 708,
+  "delivery_days": 3,
+  "source": "UMI",
+  "stock": 52
+ },
+ {
+  "id": "p043",
+  "category": "electronics",
+  "emoji": "🖱️",
+  "name": {
+   "ru": "Мышь беспроводная",
+   "kk": "Сымсыз тінтуір",
+   "en": "Wireless mouse"
+  },
+  "price": 4990,
+  "old_price": 6980,
+  "rating": 4.6,
+  "reviews": 1654,
+  "colors": [
+   "чёрный",
+   "белый"
+  ],
+  "tags": "мышь компьютер электроника",
+  "season": "all",
+  "installment_24": 208,
+  "delivery_days": 2,
+  "source": "UMI",
+  "stock": 48
+ },
+ {
+  "id": "p044",
+  "category": "electronics",
+  "emoji": "📱",
+  "name": {
+   "ru": "Чехол противоударный",
+   "kk": "Соққыға төзімді қап",
+   "en": "Shockproof phone case"
+  },
+  "price": 2490,
+  "old_price": null,
+  "rating": 4.9,
+  "reviews": 1098,
+  "colors": [
+   "прозрачный",
+   "чёрный"
+  ],
+  "tags": "чехол телефон аксессуар",
+  "season": "all",
+  "installment_24": 104,
+  "delivery_days": 7,
+  "source": "1688",
+  "stock": 54
+ },
+ {
+  "id": "p045",
+  "category": "beauty",
+  "emoji": "💆",
+  "name": {
+   "ru": "Фен-стайлер 5 в 1",
+   "kk": "Фен-стайлер 5-і 1-де",
+   "en": "5-in-1 hair styler"
+  },
+  "price": 29990,
+  "old_price": 47980,
+  "rating": 4.7,
+  "reviews": 2005,
+  "colors": [
+   "розовый"
+  ],
+  "tags": "фен волосы красота уход техника",
+  "season": "all",
+  "installment_24": 1250,
+  "delivery_days": 3,
+  "source": "UMI",
+  "stock": 37
+ },
+ {
+  "id": "p046",
+  "category": "beauty",
+  "emoji": "🧴",
+  "name": {
+   "ru": "Набор уходовой косметики",
+   "kk": "Күтім косметикасы жиынтығы",
+   "en": "Skincare set"
+  },
+  "price": 9990,
+  "old_price": null,
+  "rating": 4.9,
+  "reviews": 2384,
+  "colors": [
+   "белый"
+  ],
+  "tags": "косметика уход кожа подарок красота",
+  "season": "all",
+  "installment_24": 416,
+  "delivery_days": 10,
+  "source": "UmayHome",
+  "stock": 95
+ },
+ {
+  "id": "p047",
+  "category": "beauty",
+  "emoji": "💄",
+  "name": {
+   "ru": "Палетка теней 18 оттенков",
+   "kk": "18 реңкті көлеңке палеткасы",
+   "en": "Eyeshadow palette 18"
+  },
+  "price": 4490,
+  "old_price": 5610,
+  "rating": 4.2,
+  "reviews": 1964,
+  "colors": [
+   "разноцветный"
+  ],
+  "tags": "косметика макияж красота",
+  "season": "all",
+  "installment_24": 187,
+  "delivery_days": 10,
+  "source": "UMI",
+  "stock": 7
+ },
+ {
+  "id": "p048",
+  "category": "beauty",
+  "emoji": "🪥",
+  "name": {
+   "ru": "Электрическая зубная щётка",
+   "kk": "Электр тіс щеткасы",
+   "en": "Electric toothbrush"
+  },
+  "price": 8990,
+  "old_price": 14380,
+  "rating": 4.3,
+  "reviews": 773,
+  "colors": [
+   "белый",
+   "чёрный"
+  ],
+  "tags": "уход гигиена красота",
+  "season": "all",
+  "installment_24": 375,
+  "delivery_days": 2,
+  "source": "UmayHome",
+  "stock": 86
+ },
+ {
+  "id": "p049",
+  "category": "food",
+  "emoji": "🍫",
+  "name": {
+   "ru": "Набор азиатских сладостей",
+   "kk": "Азиялық тәттілер жиынтығы",
+   "en": "Asian sweets box"
+  },
+  "price": 4990,
+  "old_price": null,
+  "rating": 4.5,
+  "reviews": 2345,
+  "colors": [
+   "—"
+  ],
+  "tags": "сладости подарок еда азиатский",
+  "season": "all",
+  "installment_24": 208,
+  "delivery_days": 3,
+  "source": "UMI FOOD",
+  "stock": 74
+ },
+ {
+  "id": "p050",
+  "category": "food",
+  "emoji": "🍜",
+  "name": {
+   "ru": "Рамен набор 10 вкусов",
+   "kk": "Рамен 10 дәм",
+   "en": "Ramen variety pack 10"
+  },
+  "price": 5990,
+  "old_price": 9580,
+  "rating": 4.2,
+  "reviews": 347,
+  "colors": [
+   "—"
+  ],
+  "tags": "рамен лапша еда азиатский",
+  "season": "all",
+  "installment_24": 250,
+  "delivery_days": 7,
+  "source": "UMI FOOD",
+  "stock": 84
+ },
+ {
+  "id": "p051",
+  "category": "food",
+  "emoji": "🍵",
+  "name": {
+   "ru": "Чай улун подарочный",
+   "kk": "Улун шайы",
+   "en": "Oolong tea gift box"
+  },
+  "price": 6490,
+  "old_price": 10380,
+  "rating": 4.6,
+  "reviews": 1307,
+  "colors": [
+   "—"
+  ],
+  "tags": "чай подарок напитки",
+  "season": "all",
+  "installment_24": 270,
+  "delivery_days": 5,
+  "source": "UMI FOOD",
+  "stock": 26
+ }
+]

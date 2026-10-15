@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Umay GPT · API inspector</title>
+<style>
+  :root { --bg:#0E2A2C; --panel:#133638; --line:#1E4A4D; --text:#DDEFEF; --mist:#86A8AA; --teal:#4DBAC0; --dot:#F0676B; --steppe:#E9B44C; --green:#7BD389; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:14px/1.5 ui-sans-serif, system-ui, "Noto Sans", sans-serif; }
+  header { display:flex; align-items:center; gap:16px; padding:14px 20px; border-bottom:1px solid var(--line); }
+  header b { font-size:16px; }
+  .pill { padding:3px 10px; border-radius:99px; background:var(--panel); color:var(--mist); font-size:12.5px; }
+  .pill.ok { color:var(--green); }
+  main { display:grid; grid-template-columns: 1.25fr 1fr; gap:16px; padding:16px 20px; height:calc(100vh - 57px); }
+  section { background:var(--panel); border:1px solid var(--line); border-radius:12px; display:flex; flex-direction:column; min-height:0; }
+  h2 { margin:0; padding:10px 14px; font-size:13px; font-weight:600; color:var(--mist); border-bottom:1px solid var(--line); }
+  form { display:flex; gap:8px; padding:12px 14px; border-bottom:1px solid var(--line); }
+  input { flex:1; background:var(--bg); border:1px solid var(--line); color:var(--text); border-radius:8px; padding:9px 12px; font:inherit; }
+  button { background:var(--teal); color:#062022; border:0; border-radius:8px; padding:0 16px; font-weight:600; font:inherit; font-weight:600; cursor:pointer; }
+  pre { margin:0; padding:12px 14px; overflow:auto; flex:1; font:12.5px/1.55 ui-monospace, "DejaVu Sans Mono", monospace; white-space:pre-wrap; word-break:break-word; }
+  .ev { display:grid; grid-template-columns: 64px 92px 1fr; gap:8px; padding:3px 14px; font:12.5px/1.5 ui-monospace, "DejaVu Sans Mono", monospace; border-bottom:1px dashed #173f42; }
+  .t { color:var(--mist); text-align:right; }
+  .k-session{color:var(--mist)} .k-status{color:var(--steppe)} .k-artifact{color:var(--teal)} .k-text{color:var(--text)} .k-suggestions{color:#B9A6F2} .k-done{color:var(--green)}
+  #events { overflow:auto; flex:1; }
+  .right { display:grid; grid-template-rows: auto 1fr; gap:16px; min-height:0; }
+</style>
+</head>
+<body>
+<header><b>Umay GPT · API inspector</b><span class="pill" id="health">/api/health …</span><span class="pill">POST /api/chat → text/event-stream</span></header>
+<main>
+  <section>
+    <h2>Поток событий агента (SSE)</h2>
+    <form id="f"><input id="q" autocomplete="off" placeholder="Запрос к /api/chat"><button>Отправить</button></form>
+    <div id="events"></div>
+  </section>
+  <div class="right">
+    <section><h2 id="sessTitle">GET /api/sessions/{id}</h2><pre id="session" style="max-height:52vh">—</pre></section>
+    <section><h2>Сводка запроса</h2><pre id="summary">—</pre></section>
+  </div>
+</main>
+<script>
+let sid = null;
+const $ = (id) => document.getElementById(id);
+fetch('/api/health').then(r => r.json()).then(h => { $('health').textContent = `health: ${h.status} · agent: ${h.agent} · ${h.products} товаров`; $('health').classList.add('ok'); });
+
+function row(ms, type, body) {
+  const d = document.createElement('div'); d.className = 'ev';
+  d.innerHTML = `<span class="t">${ms} ms</span><span class="k-${type}">${type}</span><span></span>`;
+  d.lastChild.textContent = body; $('events').appendChild(d); $('events').scrollTop = 1e9;
+}
+
+$('f').onsubmit = async (e) => {
+  e.preventDefault();
+  const message = $('q').value.trim(); if (!message) return;
+  $('q').value = '';
+  row('', 'request', JSON.stringify({ message, session_id: sid }));
+  const t0 = performance.now(); let first = null, n = 0, text = '', kinds = [];
+  const res = await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message, session_id: sid }) });
+  const reader = res.body.getReader(); const dec = new TextDecoder(); let buf = ''; let pending = '';
+  for (;;) {
+    const { value, done } = await reader.read(); if (done) break;
+    buf += dec.decode(value, { stream: true });
+    let i; while ((i = buf.indexOf('\n\n')) >= 0) {
+      const line = buf.slice(0, i).replace(/^data: /, ''); buf = buf.slice(i + 2);
+      const ev = JSON.parse(line); n++; const ms = Math.round(performance.now() - t0);
+      if (first === null && ev.type !== 'session') first = ms;
+      if (ev.type === 'session') { sid = ev.session_id; row(ms, 'session', `session_id=${sid.slice(0, 12)}…  agent=${ev.agent}`); }
+      else if (ev.type === 'text') { text += ev.delta; pending += ev.delta; if (/[.!?]\s*$/.test(pending)) { row(ms, 'text', pending); pending = ''; } }
+      else if (ev.type === 'artifact') { const a = ev.artifact; kinds.push(a.kind); const items = a.products || a.items || []; row(ms, 'artifact', `${a.kind} · ${items.length} шт: ` + items.map(p => `${p.id} ${p.title} ${p.price}₸`).join(' | ')); }
+      else if (ev.type === 'status') row(ms, 'status', ev.text);
+      else if (ev.type === 'suggestions') row(ms, 'suggestions', ev.items.join(' · '));
+      else if (ev.type === 'done') { if (pending) row(ms, 'text', pending); row(ms, 'done', ''); }
+    }
+  }
+  const total = Math.round(performance.now() - t0);
+  $('summary').textContent = `событий: ${n}\nпервое событие после session: ${first} ms\nвесь ответ: ${total} ms\nартефакты: ${kinds.join(', ') || '—'}`;
+  const s = await fetch('/api/sessions/' + sid).then(r => r.json());
+  $('sessTitle').textContent = `GET /api/sessions/${sid.slice(0, 8)}…`;
+  $('session').textContent = JSON.stringify({ title: s.title, history: s.history.slice(-4), cart: { total: s.cart.total, installment_24: s.cart.installment_24, items: s.cart.items.map(i => `${i.id} ${i.title} ×${i.qty}`) } }, null, 2);
+};
+</script>
+</body>
+</html>
